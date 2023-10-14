@@ -1,0 +1,11 @@
+using Fractions;
+var input = Console.ReadLine().Split(" ").ToArray();
+var firstFraction = input[0].Split('/').Select(int.Parse).ToArray();
+var secondFraction = input[2].Split('/').Select(int.Parse).ToArray();
+Fraction f1 = new Fraction(firstFraction[0], firstFraction[1]);
+Fraction f2 = new Fraction(secondFraction[0], secondFraction[1]);
+
+if (input[1] == "+")
+    Console.WriteLine($"{f1} + {f2} = {f1 + f2}");
+else
+    Console.WriteLine($"{f1} - {f2} = {f1 - f2}");
