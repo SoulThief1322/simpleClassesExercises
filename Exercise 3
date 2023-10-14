@@ -1,0 +1,19 @@
+List<Card> cards = new List<Card>();
+Card ace = new Card();
+ace.Face = "A"; ace.Suite = "Spades"; cards.Add(ace);
+Card jack = new Card(); jack.Face = "J"; jack.Suite = "Diamonds"; cards.Add(jack);
+Card queen = new Card(); queen.Face = "Q"; queen.Suite = "Clubs"; cards.Add(queen);
+Card ten = new Card(); ten.Face = "10"; ten.Suite = "Hearts"; cards.Add(ten);
+foreach (Card card in cards)
+    card.Print(card.Face, card.Suite);
+
+
+class Card
+{
+    public string Face;
+    public string Suite;
+    public void Print(string Face, string Suite)
+    {
+        Console.WriteLine($"{Face} {Suite}");
+    }
+}
