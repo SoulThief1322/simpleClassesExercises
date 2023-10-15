@@ -1,0 +1,71 @@
+using System.Security.Cryptography.X509Certificates;
+List<Card> cards = new List<Card>();
+string[] faces = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "A", "J", "Q", "K"};
+string[] suites = { "Spades", "Diamonds", "Clubs", "Hearts" };
+    foreach(string face in faces)
+    {
+        foreach(string suite in suites)
+        {
+        Card card = new Card();
+        card.Face = face; card.Suite = suite; cards.Add(card);
+    }
+    }
+    DeckOfCards deckOfCards = new DeckOfCards();
+deckOfCards.CardCollection = cards;
+Random rand = new Random();
+
+var input = Console.ReadLine().Split().ToArray();
+while(input[0] != "End")
+{
+    if (input[0] == "Add")
+    {
+        Card card = new Card();
+        card.Face = input[1];
+        card.Suite = input[2];
+        cards.Add(card);
+    }
+    else if (input[0] == "Print")
+        deckOfCards.Print(cards.Last());
+
+    else if (input[0] == "Get")
+        deckOfCards.GetAllCards(cards);
+    else if (input[0] == "Randomize")
+        deckOfCards.Shuffle(cards, rand);
+    else if (input[0] == "Clear")
+        deckOfCards.Clear(deckOfCards.CardCollection);
+        input = Console.ReadLine().Split().ToArray();
+}
+class Card
+{
+    public string Face;
+    public string Suite;
+
+}
+class DeckOfCards
+{
+    public List<Card> CardCollection;
+    public void GetAllCards(List<Card> cards)
+    {
+        foreach (Card card in cards)
+            Console.WriteLine($"{card.Face} {card.Suite}");
+    }
+
+    public void Print(Card card)
+    {
+        Console.WriteLine($"{card.Face} {card.Suite}");
+    }
+    public void Shuffle(List<Card> cards, Random rand)
+    {
+        foreach (Card card in cards.OrderBy(_ => rand.Next()))
+            Console.WriteLine($"{card.Face} {card.Suite}");
+    }
+
+    public void Clear(List<Card> cards)
+    {
+        CardCollection.Clear();
+    }
+    public void AddCard(List<Card> cards, Card card)
+    {
+        cards.Add(card);
+    }
+}
