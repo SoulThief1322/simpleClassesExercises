@@ -1,0 +1,19 @@
+List<Card> cards = new List<Card>();
+string[] faces = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "A", "J", "Q", "K"};
+string[] suites = { "Spades", "Diamonds", "Clubs", "Hearts" };
+    foreach(string face in faces)
+    {
+        foreach(string suite in suites)
+        {
+        Card card = new Card();
+        card.Face = face; card.Suite = suite; cards.Add(card);
+    }
+    }
+Random rand = new Random();
+foreach(Card card in cards.OrderBy(_ => rand.Next()))
+    Console.WriteLine($"{card.Face} {card.Suite}");
+class Card
+{
+    public string Face;
+    public string Suite;
+}
